@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>PORTFOILIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5c6b924fba.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: rgb(148, 148, 148);
+            color: rgb(0, 0, 0);
+        }
+
+        #header {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, .45), rgba(54, 54, 54, 0.45), rgba(120, 120, 120, 0.45),  rgba(255, 255, 255, 0.45)),
+                        url(pic4.jpg);
+            background-size: cover;
+            background-position: bottom;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Header text animation */
+        .header-text {
+            margin-top: 60px;
+            font-size: 28px;
+            max-width: 700px;
+        }
+
+        .header-text p {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .header-text h1 {
+            font-size: clamp(32px, 6vw, 64px);
+            margin-top: 15px;
+            line-height: 1.2;
+        }
+
+        .header-text h1 span {
+            color: #ffd166;
+            position: relative;
+        }
+
+        /* typing cursor effect */
+        .header-text h1 span::after {
+            content: "|";
+            margin-left: 6px;
+            animation: blink 1s infinite;
+        }
+
+        /* keyframes */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+
+
+        .container {
+            padding: 10px 10%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 200px;
+            mix-blend-mode: lighten;
+            width: clamp(120px, 18vw, 200px);
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 10px 20px;
+        }
+
+        nav ul li a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            font-weight: bold;
+        }
+
+        nav ul li a::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ffffff;
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            transition: 0.5s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .header-text {
+            margin-top: 5%;
+            font-size: 30px;
+        }
+
+        .header-text h1 {
+            font-size: 60px;
+            margin-top: 10%;
+        }
+
+        .header-text h1 span {
+            color: #000000;
+        }
+
+        /* -----about----- */
+        #about {
+            padding: 80px 0;
+            color: #000000;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .about-col-1 {
+            flex-basis: 35%;
+        }
+
+        .about-col-1 img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .about-col-2 {
+            flex-basis: 60%;
+        }
+
+        .sub-title {
+            font-size: clamp(32px, 5vw, 60px);
+            font-weight: 600;
+            color: #111;
+        }
+
+
+        .tab-titles {
+            display: flex;
+            margin: 20px 0 40px;
+        }
+
+        .tab-links {
+            margin-right: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tab-links::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: rgb(35, 35, 35);
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 0.5s;
+        }
+
+        .tab-links.active-links::after {
+            width: 50%;
+        }
+
+        .tab-contents ul li {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+        .tab-contents ul li span {
+            color: rgb(35, 35, 35);
+            font-size: 14px;
+        }
+
+        .tab-contents {
+            display: none;
+        }
+
+        .tab-contents.active-tab {
+            display: block;
+
+        }
+
+        /* -----------services--------- */
+
+        #services {
+            padding: 30px 0;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .services-list div {
+            background-color: #262626;
+            color: #fff;
+            padding: 40px;
+            font-size: 13px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: background 0.5s, transform 0.5s;
+        }
+
+        .services-list div i {
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+
+        .services-list div h2 {
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .services-list div a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 12px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .services-list div:hover {
+            background: rgb(113, 113, 113);
+            transform: translateY(-10px);
+        }
+
+
+        /* ----------PORTFOLIO-------- */
+
+        #portfolio {
+            padding: 50px 0;
+        }
+
+        .work-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .work {
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.5s;
+            object-fit: cover;
+        }
+
+        .layer {
+            width: 100%;
+            height: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgb(62, 62, 62, 0.5), rgb(137, 137, 137, 0.5));
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            font-size: 14px;
+            transition: height 0.5s;
+        }
+
+        .layer h3 {
+            /* font-weight: 500; */
+            margin-bottom: 20px;
+        }
+
+        .layer a {
+            margin-top: 20px;
+            color: rgb(113, 113, 113);
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 60px;
+            background: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .work:hover img {
+            transform: scale(1.1);
+        }
+
+        .work:hover .layer {
+            height: 100%;
+        }
+
+        .btn {
+            display: block;
+            margin: 50px auto;
+            width: fit-content;
+            border: 1px solid rgb(113, 113, 113);
+            padding: 14px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #fff;
+            transition: all .3s ease;
+        }
+
+        .btn:hover {
+            background: #000;
+            transform: translateY(-3px);
+        }
+
+        /* ---------contact---------- */
+
+        .contact-left {
+            flex-basis: 35%;
+        }
+
+        .contact-right {
+            flex-basis: 60%;
+        }
+
+        .contact-left p {
+            margin-top: 3px;
+        }
+
+        .contact-left p i {
+            color: rgb(113, 113, 113);
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons i{
+            text-decoration: none;
+            font-size: 40px;
+            margin-right: 25px;
+            color: #000000;
+            display: inline-block;
+            transition: transform 0.5s;
+        }
+
+        .social-icons i:hover {
+            color: rgb(219, 25, 25);
+            transform: translateY(-10px);
+        }
+
+        .btn.btn2 {
+            display: inline-block;
+            background: black;
+        }
+
+        .contact-right form {
+            width: 100%;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: #262626;
+            padding: 15px;
+            margin: 15px 0;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 6px;
+        }
+
+        form .btn2 {
+            padding: 14px 60px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            padding: 25px 0;
+            background: #262626;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+
+        /* -----------css for small screen---------- */
+
+        nav .fa-solid.fa-bars {
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #header {
+                background-image: url(IMG-20241005-WA0102.jpg);
+            }
+
+            .header-text {
+                margin-top: 40%;
+                font-size: 18PX;
+            }
+
+            .header-text h1 {
+                font-size: 28px;
+            }
+
+            nav .fa-solid.fa-bars {
+                display: block;
+                font-size: 25px;
+            }
+
+            nav ul {
+                background: #b4b4b4;
+                position: fixed;
+                top: 0;
+                right: -200px;
+                width: 200px;
+                height: 100vh;
+                padding-top: 50px;
+                z-index: 2;
+                transition: right 0.5s;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 25px;
+            }
+
+            nav ul .fa-solid {
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                cursor: pointer;
+            }
+
+            .header-text {
+                margin-top: 50%;
+            }
+
+            .sub-title {
+                font-size: 40px;
+            }
+
+            .about-col-1,
+            .about-col-2 {
+                flex-basis: 100%;
+            }
+
+            .about-col-1 {
+                margin-bottom: 30px;
+            }
+
+            .about-col-2 {
+                font-size: 15px;
+            }
+
+            .contact-left,
+            .contact-right {
+                flex-basis: 100%;
+            }
+        }
+
+        #msg {
+            color: #61b752;
+            margin-top: -40px;
+            display: block;
+        }
+    </style>
+</head>
+
+
+
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="logo1.jpg" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">HOME</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#portfolio">PORTFOILIO</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>SOFTWARE DEVELOPER</p>
+                <h1>Namaste !! It's<br><span>Vishwas Ranjan</span> from <span>Bihar, India</span></h1>
+            </div>
+        </div>
+    </div>
+    <!-- -----------about-------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="pic4.jpeg">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>I am a Computer Science Engineer with a solid foundation in software development and a passion
+                        for building clean, responsive web and mobile applications. I enjoy solving complex problems,
+                        learning new technologies, and turning ideas into polished user experiences. My strengths
+                        include front-end development (HTML, CSS, JavaScript), UI/UX design, and app development —
+                        backed by internships and personal projects that demonstrate my ability to deliver real-world
+                        solutions.</p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-links" onclick="opentab('skills', this)">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience', this)">Experience</p>
+                        <p class="tab-links" onclick="opentab('education', this)">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>UI/UX</span><br>Html5, CSS3, JavaScript, React, Bootstrap, tailwind</li>
+                            <li><span>Backend & Database</span><br>Python, MySQL, Django</li>
+                            <li><span>Tools</span><br>Git&Github, Visual Studio, Figma</li>
+                            <li><span>Other Skills</span><br>MS Office, Communication Skill, Problem Solving&Smart
+                                Thinking, Time Management, Team Work</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>2022 - 2023</span><br>Lab Instructor at <a
+                                    href="https://www.justdial.com/Patna/Jiit-Infotech/group"
+                                    style="text-decoration: none; color: #fff;">JEET INFOTECH</a></li>
+                            <li><span>09/2024 - 10/2024</span><br>Internship in WEB Development at <a
+                                    href="https://www.khabaitech.com/career.html#google_vignette"
+                                    style="text-decoration: none; color: #fff;">KHABAI TECH PVT.LTD</a></li>
+                            <li><span>06/2025 - 07/2025</span><br>Industrial Training & Internship in FULLSTACK Web
+                                Development at <a href="https://www.nielit.gov.in/patna/index.php"
+                                    style="text-decoration: none; color: #fff;">NIELIT PATNA</a></li>
+
+                        </ul>
+
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2021-22</span><br>Matriculation from <a href="https://www.daffodilsfatuha.in/"
+                                    style="text-decoration: none; color: #fff;">Daffodils PUB School</a></li>
+                            <li><span>2022-23</span><br>ADCA+ Course from <a
+                                    href="https://www.justdial.com/Patna/Jiit-Infotech/group"
+                                    style="text-decoration: none; color: #fff;">JEET INFOTECH</a></li>
+                            <li><span>2023-26</span><br>Diploma in Computer Science Engineering from <a
+                                    href="https://www.gpbhojpur.org.in/"
+                                    style="text-decoration: none; color: #fff;">Government Polytechnic Bhojpur</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------services---------- -->
+
+    <div id="services">
+        <div class="container">
+            <h1 id="sub-title">
+                My Services
+            </h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>WEB Developer</h2>
+                    <p>A web developer specializes in designing and building dynamic websites and web applications using
+                        both front-end and back-end technologies. On the front end, they use HTML, CSS, and JavaScript
+                        to create responsive, interactive, and user-friendly interfaces. On the back end, they work with
+                        Python and PHP to handle server-side logic, authentication, and application functionality. They
+                        also manage data efficiently using MySQL and SQL, ensuring secure storage, retrieval, and smooth
+                        integration of databases with web applications.</p>
+                    <a href="https://github.com/MrCredence">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-crop"></i>
+                    <h2>UI/UX Developer</h2>
+                    <p>A UI/UX developer focuses on creating intuitive, visually appealing, and user-friendly digital
+                        experiences using HTML, CSS, and JavaScript for front-end development. By leveraging modern
+                        frameworks like Tailwind CSS and React, they build responsive, scalable, and high-performance
+                        interfaces with reusable components and consistent design systems. Deployment and version
+                        control through GitHub enable efficient collaboration, code management, and seamless hosting of
+                        projects, ensuring reliable updates and smooth delivery of user-focused web applications.</p>
+                    <a href="https://github.com/MrCredence">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-app-store"></i>
+                    <h2>APP Developer</h2>
+                    <p>App development involves designing and building software applications that provide efficient,
+                        user-friendly, and reliable solutions for mobile or desktop platforms. It combines front-end
+                        development for creating intuitive user interfaces with back-end logic to handle data
+                        processing, security, and performance. App developers use modern programming languages,
+                        frameworks, and tools to ensure smooth functionality, scalability, and seamless user experience,
+                        while regular testing and updates help maintain app quality and meet user needs.</p>
+                    <a href="https://github.com/MrCredence">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------portfolio------ -->
+    <div id="portfolio">
+        <div class="container">
+            <h1 id="sub-title">
+                My Work
+            </h1>
+            <div class="work-list">
+                <div class="work">
+
+                    <img src="sifra.png" alt="" autoplay muted loop width="100%" height="230px">
+                    <div class="layer">
+
+                        <h3>Shifra Virtual Assistant</h3>
+                        <p>This **Shifra Virtual Assistant** mini project uses **HTML** for layout, **CSS** for neon
+                            styling and glow effects, and **JavaScript** for voice interaction. A mic button starts
+                            speech recognition and the assistant replies using text-to-speech. It’s a simple
+                            front-end demo of a voice-enabled web assistant.</p>
+                        <a href="assistant.html">
+                            <i class="fa-solid fa-up-right-from-square"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="work">
+
+                    <video src="coco.mp4" autoplay muted loop width="100%" height="230px"></video>
+                    <div class="layer">
+                        <h3>Coca cola ad</h3>
+                        <p>This project is a simple Coca-Cola ad webpage made with HTML and CSS. It uses brand colors, a
+                            product image, and styled text to create an attractive promotional layout. It shows basic
+                            skills in webpage structure and design.</p>
+                        <a href="coco.html">
+                            <i class="fa-solid fa-up-right-from-square"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="work">
+                    <video src="car animation.mp4" autoplay muted loop width="100%" height="230px"></video>
+                    <div class="layer">
+                        <h3>Moving Car Animation</h3>
+                        <p>This **Moving Car** mini project uses **HTML** for structure, **CSS** for car and road
+                            animations, and **JavaScript** for simple controls. It shows how to create smooth motion
+                            effects on a webpage using front-end tools.
+                        </p>
+                        <a href="movingCAR.html">
+                            <i class="fa-solid fa-up-right-from-square"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="work">
+                    <video src="Resume _ VKR.mp4" autoplay muted loop width="100%" height="230px"></video>
+                    <div class="layer">
+                        <h3>Resume Page</h3>
+                        <p>This Resume small project is made with HTML, CSS, and JavaScript to display personal details,
+                            skills, and experience in a clean web layout. HTML structures the resume sections, CSS
+                            styles the design and responsiveness, and JavaScript adds small interactive features like
+                            buttons or section toggles. It’s a simple digital resume webpage project.</p>
+                        <a href="resume.html">
+                            <i class="fa-solid fa-up-right-from-square"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ----------contact---------- -->
+
+
+        <div id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="contact-left">
+                        <h1 class="sub-title">Contact Me</h1>
+                        <p><i class="fa-solid fa-envelope"></i>ranjanvishwas80@gmail.com</p>
+                        <p><i class="fa-solid fa-phone-flip"></i>+91 9142435358</p>
+                        <div class="social-icons">
+                            <a href="https://github.com/MrCredence" target="_blank"><i
+                                    class="fa-brands fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/vishwas-ranjan-99336a294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://x.com/V_K_Ranjan_?t=99W8PKoTTyKnCDzOe6M_uQ&s=08" target="_blank"><i
+                                    class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100089261215943&mibextid=ZbWKwL"
+                                target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/mr.credence_45?igsh=MTcyZGg0cTc0bm9jag=="
+                                target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="t.me/Ranjan_9_5" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        </div>
+                        <a href="/PORTFOLIO 1/IMG/Doc1.pdf" download class="btn btn2">download CV</a>
+                    </div>
+                    <div class="contact-right">
+                        <form name="submit-to-google-sheet">
+                            <input type="text" name="Name" placeholder="Your Name" required>
+                            <input type="email" name="Email" placeholder="Your Email" required>
+                            <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                            <button type="submit" class="btn btn2">Submit</button>
+
+                            <a class="btn btn2"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSd6lUgRWAtqGpjdSkMFp6mXhS4z1MnH5TPX84SSTsGRnNMqDg/viewform?usp=dialog"
+                                target="_blank" rel="noopener noreferrer" role="button">Contact Form</a>
+                        </form>
+                        <span id="msg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright © VKR. made with <i class="fa-solid fa-heart"></i> by self made</p>
+            </div>
+        </div>
+
+        <script>
+
+            const tablinks = document.querySelectorAll(".tab-links");
+            const tabcontents = document.querySelectorAll(".tab-contents");
+
+            function opentab(tabname, el) {
+                tablinks.forEach(link => link.classList.remove("active-links"));
+                tabcontents.forEach(content => content.classList.remove("active-tab"));
+                if (el) el.classList.add("active-links");
+                document.getElementById(tabname).classList.add("active-tab");
+            }
+
+            const sidemeu = document.getElementById("sidemenu");
+
+            function openmenu() {
+                sidemenu.style.right = "0";
+            }
+            function closemenu() {
+                sidemenu.style.right = "-200px";
+            }
+
+
+
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxy-w81tV8owxDnIBqZ2MZVQpTS5ITxEzh8s8-n4w7NF6KSl0X7WCYkY-8mkzaLVnC0NA/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const msg = document.getElementById("msg")
+
+            form.addEventListener('submit', e => {
+                e.preventDefault()
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => {
+                        msg.innerHTML = "Massage sent successfully"
+                        setTimeout(function () {
+                            msg.innerHTML = ""
+                        }, 5000)
+                        form.reset()
+                    })
+                    .catch(error => console.error('Error!', error.message))
+            })
+
+        </script>
+</body>
+
+</html>
